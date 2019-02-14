@@ -14,8 +14,8 @@ window.onkeyup = function(e) {
 }
 
 function covariance(x, y) {
-	if(x.length!=y.length)
-		return null;
+	// if(x.length!=y.length)
+	// 	return null;
 	let meanX = mean(x);
 	let meanY = mean(y);
 
@@ -34,13 +34,33 @@ function mean(arr) {
 }
 
 function calc() {
-	let xVals = $('#xInputs').val().split(',');
-	let yVals = $('#yInputs').val().split(',');
+	let xVals = $('#xInputs').val().split(' ').join(',').split(',');
+	let yVals = $('#yInputs').val().split(' ').join(',').split(',');
 	for(let i=0; i<xVals.length; i++)
 		xVals[i] = parseFloat(xVals[i]);
 	for(let i=0; i<yVals.length; i++)
 		yVals[i] = parseFloat(yVals[i]);
 
-	let ans = covariance(xVals, yVals);
-	$('#output').val(ans);
+
+
+	xVals = xVals.filter(function(arr) {
+		return ! isNaN(arr);
+	});
+	yVals = yVals.filter(function(arr) {
+		return ! isNaN(arr);
+	});
+	// for(let i=0; i<xVals.length; i++) {
+	// 	if(isNaN(xVals[i]) ) {
+	// 		xVals.splice(i, 1);
+	// 		i++;
+	// 	}
+	// }
+	console.log(xVals);
+
+	if(xVals.length<2 || yVals.length<2)
+		$('#output').val('must have at least 2 x and y values');
+	else if(xVals.length != yVals.length)
+		$('#output').val('must have same number of x and y values');
+	else
+		$('#output').val(covariance(xVals, yVals) );
 }

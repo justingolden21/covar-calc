@@ -1,6 +1,10 @@
 
 $(function() {
 	$('#calcButton').click(calc);
+	$('#xInputs').val('2.1,2.5,4,3.6');
+	$('#yInputs').val('8,12,14,10');
+	calc();
+	$('#xInputs').select();
 });
 
 window.onkeyup = function(e) {

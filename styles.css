@@ -1,3 +1,6 @@
+* {
+	text-align: center;
+}
 img, button {
 	-webkit-user-select: none; /* Safari */        
 	-moz-user-select: none; /* Firefox */
